@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<RootNamespace>Mouts.SalesDeveloper.Tests</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="6.0.2" />
+		<PackageReference Include="FluentAssertions" Version="8.2.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+		<PackageReference Include="Moq" Version="4.20.72" />
+		<PackageReference Include="xunit" Version="2.9.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Mouts.SalesDeveloper.Api\Mouts.SalesDeveloper.Api.csproj" />
+		<ProjectReference Include="..\Mouts.SalesDeveloper.Application\Mouts.SalesDeveloper.Application.csproj" />
+		<ProjectReference Include="..\Mouts.SalesDeveloper.Domain\Mouts.SalesDeveloper.Domain.csproj" />
+		<ProjectReference Include="..\Mouts.SalesDeveloper.Infrastructure\Mouts.SalesDeveloper.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Api\Controller\" />
+		<Folder Include="Application\Handlers\" />
+		<Folder Include="Config\" />
+	</ItemGroup>
+
+</Project>

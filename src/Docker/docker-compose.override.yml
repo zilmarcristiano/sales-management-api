@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+  mouts_salesdeveloper_api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ConnectionStrings__DefaultConnection=Host=mouts_salesdeveloper_database;Port=5432;Database=sales_db;Username=sales_user;Password=Sales@123

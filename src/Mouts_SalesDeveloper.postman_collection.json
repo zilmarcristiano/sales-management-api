@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "Mouts.SalesDeveloper.Api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0"
+  },
+  "item": [
+    {
+      "name": "Get Sale By Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/sales/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","sales",":id"],
+          "variable": [
+            {
+              "key": "id",
+              "description": "UUID of the sale",
+              "disabled": false
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Sale By Id",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/sales/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","sales",":id"],
+          "variable": [
+            {
+              "key": "id",
+              "description": "UUID of the sale",
+              "disabled": false
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"saleNumber\": \"string\",\n  \"saleDate\": \"2025-07-13T14:00:00Z\",\n  \"customerId\": \"00000000-0000-0000-0000-000000000000\",\n  \"customerName\": \"string\",\n  \"branchId\": \"00000000-0000-0000-0000-000000000000\",\n  \"branchName\": \"string\",\n  \"status\": \"string\",\n  \"items\": [\n    {\n      \"productId\": \"00000000-0000-0000-0000-000000000000\",\n      \"productName\": \"string\",\n      \"unitPrice\": 0,\n      \"quantity\": 1\n    }\n  ]\n}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Sales",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/sales",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","sales"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Sale",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/sales",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","sales"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"saleNumber\": \"string\",\n  \"saleDate\": \"2025-07-13T14:00:00Z\",\n  \"customerId\": \"00000000-0000-0000-0000-000000000000\",\n  \"customerName\": \"string\",\n  \"branchId\": \"00000000-0000-0000-0000-000000000000\",\n  \"branchName\": \"string\",\n  \"status\": \"string\",\n  \"items\": [\n    {\n      \"productId\": \"00000000-0000-0000-0000-000000000000\",\n      \"productName\": \"string\",\n      \"unitPrice\": 0,\n      \"quantity\": 1\n    }\n  ]\n}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Paginated Sales",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/sales/paginated?page=1&size=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","sales","paginated"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "size", "value": "10" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Sale By Id",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/sales/:id/cancel",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","sales",":id","cancel"],
+          "variable": [
+            {
+              "key": "id",
+              "description": "UUID of the sale",
+              "disabled": false
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"reason\": \"string\"\n}"
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

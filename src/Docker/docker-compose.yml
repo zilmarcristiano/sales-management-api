@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  mouts_salesdeveloper_api:
+    container_name: mouts_salesdeveloper_api
+    build:
+      context: ../
+      dockerfile: Mouts.SalesDeveloper.Api/Dockerfile
+    image: mouts_salesdeveloper_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "5000:5000"
+    depends_on:
+      mouts_salesdeveloper_database:
+        condition: service_healthy
+
+  mouts_salesdeveloper_database:
+    container_name: mouts_salesdeveloper_database
+    image: postgres:13
+    environment:
+      POSTGRES_DB: sales_db
+      POSTGRES_USER: sales_user
+      POSTGRES_PASSWORD: Sales@123
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sales_user -d sales_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  nuget_cache:
+  db_data:

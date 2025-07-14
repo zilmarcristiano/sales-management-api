@@ -1,0 +1,55 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Mouts.SalesDeveloper.Domain.Entities;
+using Mouts.SalesDeveloper.Domain.Repositories;
+
+namespace Mouts.SalesDeveloper.Infrastructure.Data.Repositories
+{
+    public class SaleRepository : ISaleRepository
+    {
+        private readonly DbContext _context;
+
+        public SaleRepository(DbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<Sale?> GetByIdAsync(Guid id) =>
+            await _context.Set<Sale>()
+                .Include(s => s.Items)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+        public IQueryable<Sale> Query()
+        {
+            return _context.Set<Sale>().AsNoTracking();
+        }
+
+        public Task<IQueryable<Sale>> GetQueryableAsync()
+        {
+            return Task.FromResult(_context.Set<Sale>().Include(s => s.Items).AsNoTracking().AsQueryable());
+        }
+
+        public async Task<IEnumerable<Sale>> GetAllAsync() => await _context.Set<Sale>().ToListAsync();
+        public async Task AddAsync(Sale sale)
+        {
+            await _context.Set<Sale>().AddAsync(sale);
+        }
+
+        public async Task UpdateAsync(Sale sale)
+        {
+            _context.Set<Sale>().Update(sale);
+        }
+
+        public async Task<bool> ExistsAsync(Guid id) => await _context.Set<Sale>().AnyAsync(x => x.Id == id);
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+        public void RemoveAllItems(Sale sale)
+        {
+            var itemSet = _context.Set<SaleItem>();
+            itemSet.RemoveRange(sale.Items);
+        }
+
+
+    }
+}
